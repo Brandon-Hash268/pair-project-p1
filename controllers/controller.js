@@ -33,7 +33,7 @@ class Controller {
                     required:false
                 }
             })
-            console.log(user);
+            // console.log(user);
             
             
             
@@ -49,7 +49,7 @@ class Controller {
         const userId = req.session.user.id
         const{totalStock} = req.body
         try {
-            console.log(totalStock);
+            // console.log(totalStock);
             
             const stock = await Stock.findByPk(id);
             let portofolio = await Portofolio.findOne({where:{StockId:id}})
@@ -78,7 +78,7 @@ class Controller {
             if(error)error = error.split(",")
             
             const stock = await Stock.findByPk(id);
-            console.log(stock);
+            // console.log(stock);
             const user = await User.findByPk(userId,{
                 include:{
                     model:Portofolio,
@@ -88,7 +88,7 @@ class Controller {
                     required:false
                 }
             })
-            console.log(user);
+            // console.log(user);
             
             
             
@@ -104,7 +104,7 @@ class Controller {
         const userId = req.session.user.id
         const{totalStock} = req.body
         try {
-            console.log(totalStock);
+            // console.log(totalStock);
             
             const stock = await Stock.findByPk(id);
             let portofolio = await Portofolio.findOne({where:{StockId:id}})
@@ -149,7 +149,7 @@ class Controller {
             console.log(user.Portofolios);
             
             const totalBalance = await Portofolio.Total(user.id);
-            console.log(totalBalance);
+            // console.log(totalBalance);
             if (user.Portofolios) {
                 
                 res.render('profile', { user, totalBalance,currency });
@@ -167,14 +167,17 @@ class Controller {
             let id = req.session.user.id
             // console.log(id);
             
-            let portofolio = await Portofolio.findOne({
-                where:{UserId:id},
-                include:{model:stock}
+            let portofolio = await Portofolio.findAll({
+                where:{
+                    UserId:id,
+                    totalStock:{[Op.gt]:0}
+                },
+                include:Stock
             })
             console.log(portofolio);
             
-            res.send(user)
-            res.render("UserStock",{portofolio})
+            // res.send(portofolio)
+            res.render("UserStock",{portofolio,currency})
         } catch (error) {
             res.send(error)
         }

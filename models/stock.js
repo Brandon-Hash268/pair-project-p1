@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Stock.hasMany(models.Transaction);
       Stock.hasMany(models.Portofolio);
     }
+    get formattedName(){
+      return `${this.companyName} (${this.code})`
+    }
   }
   Stock.init({
     companyName: DataTypes.STRING,
