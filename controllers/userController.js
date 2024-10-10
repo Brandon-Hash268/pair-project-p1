@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs/dist/bcrypt")
 const{User,UserProfile} = require("../models")
-const session = require("express-session")
+// const session = require("express-session")
 
 class userController{
     static async loginForm(req,res){
@@ -26,7 +26,7 @@ class userController{
 
             let isValid = bcrypt.compareSync(password,person.password)
             if(isValid == true){
-                console.log(req.session);
+                // console.log(req.session);
                 req.session.user = {id:person.id,role:person.role}
                 
             }

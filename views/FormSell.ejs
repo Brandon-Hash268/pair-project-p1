@@ -84,7 +84,7 @@
 <body>
     <%- include('partials/navbar') %>
 <div class="form-container">
-    <h2>Buy Stock</h2>
+    <h2>Sell Stock</h2>
     <div class="stock-details">
         <div class="stock-info">
             <h5><%= stock.companyName %></h5>
@@ -94,12 +94,17 @@
         </div>
         <img class="img-preview" src="<%= stock.imgUrl %>" alt="Stock Image">
     </div>
-    <form action="/stock/<%= stock.id %>/buy" method="post">
+    <form action="/stock/<%= stock.id %>/sell" method="post">
         <div class="form-group">
             <label for="totalStock">Quantity to Buy:</label>
             <input type="number" id="totalStock" name="totalStock" min="1" placeholder="Enter quantity" required>
         </div>
-        <button type="submit">Buy Stock</button>
+        <button type="submit">Sell Stock</button>
+        <% if (error) { %>
+            <% error.forEach(e => { %>
+                <p style="color: red;">e</p>
+            <% }) %>    
+        <% } %>
     </form>
 </div>
 

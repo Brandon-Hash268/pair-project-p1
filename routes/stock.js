@@ -15,6 +15,10 @@ router.post("/add",adminController.postAdd);
 
 
 router.get("/:id/buy",Controller.formBuy);
+router.post("/:id/buy",Controller.postBuy);
+
+router.get("/:id/sell",Controller.formSell);
+router.post("/:id/sell",Controller.postSell);
 
 
 
