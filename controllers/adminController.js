@@ -31,7 +31,7 @@ class adminController{
             })
             res.redirect("/stock")
         } catch (error) {
-            res.send(error)
+            res.redirect("/stock?error=Cant delete Stocks that User Have")
         }
     }
 

@@ -102,7 +102,7 @@
         <button type="submit">Sell Stock</button>
         <% if (error) { %>
             <% error.forEach(e => { %>
-                <p style="color: red;">e</p>
+                <p style="color: red;"><%= e %></p>
             <% }) %>    
         <% } %>
     </form>

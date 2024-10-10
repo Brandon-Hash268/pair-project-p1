@@ -6,13 +6,14 @@ const transaction = require("../models/transaction");
 class Controller {
     static async home(req,res) {
         let {search} = req.query
+        let {error} = req.query
         try {
             let data = await Stock.findAll({
                 order:[["price","DESC"]],
                 ...(search?{where:{code:{[Op.iLike]:`%${search}%`}}}:{})
             });
 
-            res.render("home", { data,currency });
+            res.render("home", { data,currency,error });
         } catch (err) {
             res.send(err.message)
         }
@@ -75,6 +76,8 @@ class Controller {
         const userId = req.session.user.id
         let {error} = req.query
         try {
+            // console.log(error);
+            
             if(error)error = error.split(",")
             
             const stock = await Stock.findByPk(id);
@@ -89,10 +92,7 @@ class Controller {
                 }
             })
             // console.log(user);
-            
-            
-            
-            // res.send(user)
+
             res.render("FormSell", {stock,user,currency,error});
         } catch (err) {
             res.send(err.message)
@@ -109,9 +109,10 @@ class Controller {
             const stock = await Stock.findByPk(id);
             let portofolio = await Portofolio.findOne({where:{StockId:id}})
 
-            if (!portofolio) {
+            if (!portofolio && portofolio.totalStock == 0) {
                 throw new Error(`You dont own Any stock`)
             }else{
+                if(totalStock > portofolio.totalStock)throw Error(`You dont have that much Stocks`)
                 portofolio.totalStock -= Number(totalStock)
                 portofolio.totalValue -= Portofolio.totalMoney(stock.price,totalStock)
                 await portofolio.save()
@@ -120,13 +121,13 @@ class Controller {
 
             // res.send(user)
             res.redirect("/stock");
-        } catch (err) {
+        } catch (error) {
             if (error.name == 'SequelizeValidationError') {
                 let errors = error.errors.map(e => e.message)
-                // console.log(errors);
-                res.redirect(`/register?error=${errors}`)        
+                console.log(error);
+                res.redirect(`/stock/${id}/sell?error=${errors}`)        
             }else{
-                res.redirect(`/register?error=${error.message}`)       
+                res.redirect(`/stock/${id}/sell?error=${error.message}`)       
             }
         } 
     }
@@ -183,6 +184,24 @@ class Controller {
         }
     }
 
+    static async transactionPage(req,res){
+        try {
+            let id = req.session.user.id
+            // console.log(id);
+            
+            let transaction = await Transaction.findAll({
+                where:{UserId:id, },
+                include:Stock
+            })
+            // console.log(portofolio);
+            
+            // res.send(portofolio)
+            res.render("Transaction",{transaction,currency})
+        } catch (error) {
+            res.send(error)
+        }
+    }
+    
 }
 
 module.exports = Controller;
