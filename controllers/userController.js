@@ -41,17 +41,16 @@ class userController{
     }
 
     static async registerForm(req,res){
+        let {error} = req.query
         try {
-            let error = ""
+            if(error){
+               error = error.split(",")
+            }
+            console.log(error);
+            
             res.render("register",{error})
         } catch (error) {
-            if (typeof error == "object") {
-                let errors = error.errors.map(e => e.message)
-
-                res.send(errors)        
-            }else{
-                res.send(error)        
-            }
+            res.send(error)        
         }
     }
 
@@ -61,10 +60,16 @@ class userController{
             // console.log(email,password,firstName,lastName,birthDate,role);
             let data = await User.create({email,password,role})
             await UserProfile.create({firstName,lastName,birthDate,UserId:data.id})
-
+            
             res.redirect("/login")
         } catch (error) {
-            res.send(error)
+            if (error.name == 'SequelizeValidationError') {
+                let errors = error.errors.map(e => e.message)
+                // console.log(errors);
+                res.redirect(`/register?error=${errors}`)        
+            }else{
+                res.redirect(`/register?error=${error.message}`)       
+            }   
         }
     }
 }

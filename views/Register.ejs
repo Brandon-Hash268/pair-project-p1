@@ -78,8 +78,10 @@
                 </div>
 
                 <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Register</button></div>
-                <% if (error != undefined) { %>
-                    <p style="color: red;"><%= error %></p>
+                <% if (error) { %>
+                  <% error.forEach(e => { %>
+                    <p style="color: red;"><%= e %></p>
+                  <% }) %>
                 <% } %>
               </form>
             </div>
