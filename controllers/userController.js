@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs/dist/bcrypt")
 const{User,UserProfile} = require("../models")
+const session = require("express-session")
 
 class userController{
     static async loginForm(req,res){
@@ -17,20 +18,24 @@ class userController{
         try {
             if(!email || !password)throw new Error(`Please fill the Password and Email`)
 
-            let user = await User.findOne({
+            let person = await User.findOne({
                 where:{email}
             })
             // console.log(user);
-            if(!user)throw new Error(`Cant find user with that Email`)
+            if(!person)throw new Error(`Cant find user with that Email`)
 
-            let isValid = bcrypt.compareSync(password,user.password)
+            let isValid = bcrypt.compareSync(password,person.password)
             if(isValid == true){
-                req.session.user = {id:user.id,role:user.role}
+                console.log(req.session);
+                req.session.user = {id:person.id,role:person.role}
+                
             }
             if(isValid == false)throw new Error(`Your Password is wrong`)
 
             res.redirect("/stock")
         } catch (error) {
+            console.log(error);
+            
             res.redirect(`/login?error=${error.message}`)
         }
     }
