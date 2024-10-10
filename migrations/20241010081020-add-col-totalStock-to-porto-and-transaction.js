@@ -1,6 +1,7 @@
 'use strict';
 
 const { query } = require('express');
+const { sequelize } = require('../models');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -11,11 +12,19 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn("Stocks","code",{type:Sequelize.STRING})
+    await queryInterface.addColumn("Portofolios","totalStock",{
+      type:Sequelize.INTEGER,
+      defaultValue:0
+    })
+    await queryInterface.addColumn("Transactions","totalStock",{
+      type:Sequelize.INTEGER,
+      defaultValue:0
+    })
   },
-  
+
   async down (queryInterface, Sequelize) {
-    await queryInterface.removeColumn("Stocks","code")
+    await queryInterface.removeColumn("Portofolios","totalStock")
+    await queryInterface.removeColumn("Transactions","totalStock")
     /**
      * Add reverting commands here.
      *

@@ -1,3 +1,4 @@
+const currency = require("../helpers/currency");
 const { Stock } = require("../models");
 
 class Controller {
@@ -7,8 +8,7 @@ class Controller {
                 order:[["price","DESC"]]
             });
 
-        let role = req.session.user?.role;  // Safely access role from session
-            res.render("home", { data });
+            res.render("home", { data,currency });
         } catch (err) {
             res.send(err.message)
         }
