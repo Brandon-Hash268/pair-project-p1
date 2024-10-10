@@ -14,15 +14,30 @@ class Controller {
         }
     }
 
-    static async getBuy(req,res) {
-        const {id} = req.params
-        try {
+    // static async getBuy(req,res) {
+    //     const {id} = req.params
+    //     try {
             
-            res.render("home", { data });
+    //         res.render("home", { data });
+    //     } catch (err) {
+    //         res.send(err.message)
+    //     }
+    // }
+
+    
+    static async formBuy(req,res) {
+        const {id} = req.params;
+        try {
+            const data = await Stock.findByPk(id);
+            res.render("formbuy", {data});
+            // console.log(data);
+            
+            // res.send(data);
         } catch (err) {
             res.send(err.message)
         }
     }
+
 }
 
 module.exports = Controller;

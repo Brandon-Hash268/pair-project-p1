@@ -5,9 +5,6 @@ const router = require("express").Router();
 
 router.get("/",Controller.home);
 
-router.get("/:id/buy",Controller.getBuy);
-router.post("/:id/buy",Controller.home);
-
 router.get("/:id/edit",adminController.getEdit);
 router.post("/:id/edit",adminController.postEdit);
 
@@ -15,6 +12,10 @@ router.get("/:id/delete",adminController.getdelete);
 
 router.get("/add",adminController.getAdd);
 router.post("/add",adminController.postAdd);
+
+
+router.get("/:id/buy",Controller.formBuy);
+
 
 
 module.exports = router;

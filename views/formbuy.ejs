@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Buy & Sell</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Form Buy & Sell</h2>
+
+<form id="buySellForm">
+    <label for="productName">Nama Produk:</label>
+    <input type="text" id="productName" name="productName" required>
+
+    <label for="quantity">Jumlah:</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+
+    <label for="price">Harga per Unit:</label>
+    <input type="number" id="price" name="price" min="0" step="0.01" required>
+
+    <label for="transactionType">Tipe Transaksi:</label>
+    <select id="transactionType" name="transactionType" required>
+        <option value="buy">Beli</option>
+        <option value="sell">Jual</option>
+    </select>
+
+    <button type="submit">Kirim</button>
+</form>
+
+<!-- <script>
+    document.getElementById('buySellForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const productName = event.target.productName.value;
+        const quantity = event.target.quantity.value;
+        const price = event.target.price.value;
+        const transactionType = event.target.transactionType.value;
+
+        const totalCost = quantity * price;
+
+        alert(`Transaksi:\nProduk: ${productName}\nJumlah: ${quantity}\nHarga per Unit: ${price}\nTotal: ${totalCost}\nTipe Transaksi: ${transactionType}`);
+    });
+</script> -->
+
+</body>
+</html>
