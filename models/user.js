@@ -12,9 +12,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.UserProfile);
-      User.hasMany(models.Transaction);
-      User.hasMany(models.Portofolio);
+      User.hasOne(models.UserProfile, {
+        onDelete: 'CASCADE',
+      });
+      User.hasMany(models.Transaction, {
+        onDelete: 'CASCADE',
+      });
+      User.hasMany(models.Portofolio, {
+          onDelete: 'CASCADE',
+      });
     }
   }
   User.init({

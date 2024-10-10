@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Profile</title>
+    <%- include('partials/logo') %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMR7j1X+5/QzGxV3m5tI3U7M4QdZ9B8V25H/W1" crossorigin="anonymous" />
+    <style>
+        body {
+            background-color: #f0f4f8; /* Light grey background */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px; /* Maximum width for the container */
+            margin-top: 50px; /* Space from the top */
+        }
+        .card {
+            background-color: rgba(0, 35, 122, 0.7); /* Adjusted opacity for better contrast */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+            margin-bottom: 30px; /* Space between cards */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Light border for luxury look */
+            padding: 20px; /* Padding around the card */
+            transition: transform 0.2s; /* Smooth scale on hover */
+        }
+        .card:hover {
+            transform: scale(1.02); /* Slightly scale card on hover */
+        }
+        .top-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+        .profile-image {
+            border-radius: 50%; /* Circular profile image */
+            border: 4px solid #ffffff; /* White border */
+            margin-right: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the profile image */
+        }
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff; /* White text */
+        }
+        .mail {
+            font-size: 16px;
+            color: #e0e0e0; /* Light grey text */
+        }
+        .balance-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Light white background for balance */
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .current-balance {
+            font-size: 20px;
+            font-weight: bold;
+            color: #272727; /* Dark text */
+        }
+        .amount {
+            font-size: 36px; /* Larger amount font */
+            font-weight: bold;
+            color: #272727; /* Dark text */
+        }
+        .btn {
+            background-color: #5957f9; /* Custom button color */
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+        }
+        .btn:hover {
+            background-color: #4a54e1; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly scale button on hover */
+        }
+        .button-container {
+            margin-top: 20px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container d-flex flex-column align-items-center" style="margin-top: 0px;">
+        <div class="card">
+            <div class="top-container">
+                <img src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=" class="img-fluid profile-image" width="100">
+                <div>
+                    <h5 class="name"><%= user.UserProfile.firstName %> <%= user.UserProfile.lastName %></h5>
+                    <p class="mail"><%= user.email %></p>
+                </div>
+            </div>
+            <div class="balance-container">
+                <span class="current-balance">Total Balance</span><br>
+                <span class="amount">$1476</span>
+            </div>
+            <div class="button-container d-flex flex-column align-items-center mb-3">
+                <a href="/user/stock" class="btn">View My Stock</a>
+                <a href="/user/transactions" class="btn mt-2">Transaction History</a> <!-- New Transaction History button -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
