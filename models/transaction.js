@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const moment = require("moment")
 module.exports = (sequelize, DataTypes) => {
   class Transaction extends Model {
     /**
@@ -11,9 +12,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Transaction.belongsTo(models.User);
-      Transaction.belongsTo(models.Stock);
+      Transaction.belongsTo(models.User,{
+        onDelete: 'CASCADE',
+      });
+      Transaction.belongsTo(models.Stock,{
+        onDelete: 'CASCADE',
+      });
 
+    }
+    get date(){
+      return moment(this.transactionDate).format('YYYY-MM-DD')
     }
   }
   Transaction.init({

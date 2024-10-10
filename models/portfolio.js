@@ -12,8 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Portofolio.belongsTo(models.User);
-      Portofolio.belongsTo(models.Stock);
+      Portofolio.belongsTo(models.User,{
+        onDelete: 'CASCADE',
+      });
+      Portofolio.belongsTo(models.Stock,{
+        onDelete: 'CASCADE',
+      });
 
     }
     static totalMoney(price,totalStock){
