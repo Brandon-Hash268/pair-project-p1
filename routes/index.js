@@ -1,6 +1,7 @@
 const Controller = require("../controllers/controller");
 const { userController } = require("../controllers/userController");
 
+
 // login,post,register,postregister
 const router = require("express").Router();
 

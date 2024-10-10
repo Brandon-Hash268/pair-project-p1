@@ -16,10 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   Stock.init({
     companyName: DataTypes.STRING,
     price: DataTypes.INTEGER,
+    imgUrl: DataTypes.STRING,
     code: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'Stock',
   });
   return Stock;
 };
+
+// action button,pindah img,container,navbar(navbar template)
