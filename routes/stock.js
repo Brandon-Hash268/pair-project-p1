@@ -14,4 +14,8 @@ router.get("/add",adminController.getAdd);
 router.post("/add",adminController.postAdd);
 
 
+router.get("/:id/buy",Controller.formBuy);
+
+
+
 module.exports = router;

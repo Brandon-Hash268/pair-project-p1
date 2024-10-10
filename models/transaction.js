@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Transaction.belongsTo(models.User);
       Transaction.belongsTo(models.Stock);
-      
+
     }
   }
   Transaction.init({
@@ -28,3 +28,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Transaction;
 };
+
+// req.session.user.id => untuk ambil akun 

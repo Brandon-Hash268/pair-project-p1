@@ -17,6 +17,17 @@ class Controller {
         }
     }
 
+    static async formBuy(req,res) {
+        const {id} = req.params;
+        try {
+            const data = await Stock.findByPk(id);
+            res.render("formbuy", {data});
+            // console.log(data);
+            
+            // res.send(data);
+        } catch (err) {
+            res.send(err.message)
+
     static async userProfiles(req,res){
         try {
             let id = req.session.user.id
@@ -59,6 +70,7 @@ class Controller {
             res.send(error)
         }
     }
+
 }
 
 module.exports = Controller;
