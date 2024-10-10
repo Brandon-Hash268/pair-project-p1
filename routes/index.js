@@ -7,5 +7,8 @@ router.get("/post");
 router.get("/register");
 router.get("/postRegister");
 
+app.use("/user",require("./user"))
+app.use("/stock",require("./stock"))
+
 
 module.exports = router;
