@@ -1,0 +1,63 @@
+[
+    {
+      "companyName": "PT Astra International Tbk",
+      "code": "ASII",
+      "price": 7200,
+      "imgUrl": "https://alphainvestasi.id/wp-content/uploads/2024/06/Logo-Saham-ASII-Astra-Group.webp"
+    },
+    {
+      "companyName": "PT Bank Central Asia Tbk",
+      "code": "BBCA",
+      "price": 33500,
+      "imgUrl": "https://s3-symbol-logo.tradingview.com/bank-central-asia--600.png"
+    },
+    {
+      "companyName": "PT Bank Rakyat Indonesia Tbk",
+      "code": "BBRI",
+      "price": 4650,
+      "imgUrl": "https://s3-symbol-logo.tradingview.com/bank-rakyat-indonesia--600.png"
+    },
+    {
+      "companyName": "PT Telkom Indonesia Tbk",
+      "code": "TLKM",
+      "price": 4200,
+      "imgUrl": "https://s3-symbol-logo.tradingview.com/telekom-indonesia--600.png"
+    },
+    {
+      "companyName": "PT Indofood CBP Sukses Makmur Tbk",
+      "code": "ICBP",
+      "price": 10500,
+      "imgUrl": "https://s3-symbol-logo.tradingview.com/indofood-cbp--600.png"
+    },
+    {
+      "companyName": "PT Gudang Garam Tbk",
+      "code": "GGRM",
+      "price": 24250,
+      "imgUrl": "https://cdn1-production-images-kly.akamaized.net/oHusVo9WZ7FCIS2YjJUruAOFy1s=/800x450/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/775104/original/084299000_1417676738-Profil-Susilo-Wonowidjojo.jpg"
+    },
+    {
+      "companyName": "PT Unilever Indonesia Tbk",
+      "code": "UNVR",
+      "price": 3850,
+      "imgUrl": "https://facsekuritas.co.id/storage/media/original/unvr.jpg"
+    },
+    {
+      "companyName": "PT Sampoerna Agro Tbk",
+      "code": "SGRO",
+      "price": 2030,
+      "imgUrl": "https://www.sampoernaagro.com/assets/images/icon/logo-sagro.png"
+    },
+    {
+      "companyName": "PT Wijaya Karya Tbk",
+      "code": "WIKA",
+      "price": 1180,
+      "imgUrl": "https://cdn.antaranews.com/cache/1200x800/2023/10/24/logo_wika.png"
+    },
+    {
+      "companyName": "PT Bukit Asam Tbk",
+      "code": "PTBA",
+      "price": 3260,
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfR9ooB02pvGc2cQXjn2IvuLeZ-J6eT9vN7g&s"
+    }
+  ]
+  
