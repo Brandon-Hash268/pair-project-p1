@@ -1,55 +1,111 @@
-<style> @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  
+  body {
+      padding-top: 80px; /* Space for fixed navbar */
+      background: #f4f7fa; /* Light background */
+  }
+  
   nav {
-    max-width: 960px;
-    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
-    margin: 0 auto;
-    padding: 60px 0;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 20px; /* Padding for better spacing */
+      position: fixed; /* Keep navbar fixed */
+      top: 0; 
+      left: 0;
+      right: 0;
+      display: flex; /* Use Flexbox */
+      align-items: center; /* Center items vertically */
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0.8)); /* Gradient background */
+      z-index: 1000; 
+      transition: background 0.3s, box-shadow 0.3s; /* Smooth transition */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      border-radius: 10px; /* Rounded corners */
+  }
+  
+  nav.scrolled {
+      background: rgba(255, 255, 255, 1); /* Solid background when scrolled */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on scroll */
   }
   
   nav ul {
-    text-align: center;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+      display: flex; /* Use Flexbox for list items */
+      margin: 0;
+      padding: 0;
+      flex-grow: 1; /* Allow the ul to grow */
+      justify-content: center; /* Center the links */
+      list-style-type: none; /* Remove default bullets */
+      padding-right: 40px;
   }
   
   nav ul li {
-    display: inline-block;
+      position: relative; /* For pseudo-element positioning */
+      margin: 0 10px; /* Add margin for spacing between links */
   }
   
   nav ul li a {
-    padding: 18px;
-    font-family: "Open Sans";
-    text-transform:uppercase;
-    color: rgba(0, 35, 122, 0.5);
-    font-size: 18px;
-    text-decoration: none;
-    display: block;
+      padding: 12px 15px; /* Adjusted padding for better spacing */
+      font-family: "Open Sans";
+      text-transform: uppercase;
+      color: rgba(0, 35, 122, 0.9); /* Color for links */
+      font-size: 16px; 
+      text-decoration: none;
+      display: block;
+      transition: color 0.3s, transform 0.3s; /* Smooth transitions */
+      border-radius: 5px; /* Rounded corners on links */
+      padding-right: 20px; /* Add right padding to the text */
   }
   
   nav ul li a:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(0, 35, 122, 0.7);
+      color: rgba(0, 35, 122, 1); /* Darker on hover */
+      transform: translateY(-2px); /* Slightly raise on hover */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   }
   
+  /* Add a bottom border on hover for an active effect */
+  nav ul li a::after {
+      content: '';
+      display: block;
+      width: 0; /* Initial width */
+      height: 2px; /* Border height */
+      background: rgba(0, 35, 122, 1); /* Border color */
+      transition: width 0.3s; /* Smooth transition */
+      margin: auto; /* Center the border */
+  }
   
+  nav ul li a:hover::after {
+      width: 100%; /* Expand on hover */
+  }
+  
+  .nav-logo {
+      height: 40px; /* Set logo height */
+      margin-right: 15px; /* Space between logo and text */
+      object-fit: contain; /* Ensure logo maintains aspect ratio */
+  }
 </style>
-<nav>
-    <ul>
+
+<nav id="navbar">
+  <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail nav-logo" alt="Logo">
+  <ul>
       <li>
-        <a href="/stock">Stocks</a>
+          <a href="/stock"><i class="fas fa-chart-line"></i> Stocks</a>
       </li>
       <li>
-        <a href="#">About</a>
-      </li>
+          <a href="/user"><i class="fas fa-user"></i> Profile</a>
+      </li> 
       <li>
-        <a href="#">Services</a>
+          <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </li>
-      <li>
-        <a href="#">Contact</a>
-      </li>
-      <li>
-        <a href="/logout">Logout</a>
-      </li>
-    </ul>
-  </nav>
+  </ul>
+</nav>
+
+<script>
+  window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 0) {
+          navbar.classList.add('scrolled'); // Add class when scrolled down
+      } else {
+          navbar.classList.remove('scrolled'); // Remove class when at the top
+      }
+  });
+</script>
