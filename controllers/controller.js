@@ -1,7 +1,7 @@
 const { Op } = require("sequelize");
 const currency = require("../helpers/currency");
 const { Stock,User,Portofolio,UserProfile,Transaction } = require("../models");
-const transaction = require("../models/transaction");
+const io = require("../app")
 
 class Controller {
     static async home(req,res) {
@@ -63,7 +63,7 @@ class Controller {
                 await portofolio.save()
             }
             await Transaction.create({UserId:userId,StockId:id,totalStock,price:stock.price,type:`Buy`,transactionDate:new Date()})
-
+            global.io.emit(`Succesfully bought ${stock.code}`);
             // res.send(user)
             res.redirect("/stock");
         } catch (err) {
